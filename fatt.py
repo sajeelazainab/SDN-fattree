@@ -13,7 +13,7 @@ class MyTopo( Topo ):
 
         # Initialize topology
         Topo.__init__( self )
-        L1 = 2
+        L1 = 4
         L2 = L1 * 2 
         L3 = L2
         c = []
@@ -43,7 +43,7 @@ class MyTopo( Topo ):
 			self.addLink( sw2, sw1 )
 
         # add links between aggregation and edge ovs
-        for i in range( 0, L2, 2 ):
+        for i in range( 0, L2, 4 ):
                 for sw1 in a[i:i+2]:
 	                for sw2 in e[i:i+2]:
                 # self.addLink(sw2, sw1, bw=10, delay='5ms', loss=10, max_queue_size=1000, use_htb=True)
@@ -52,7 +52,7 @@ class MyTopo( Topo ):
         #add hosts and its links with edge ovs
         count = 1
         for sw1 in e:
-                for i in range(2):
+                for i in range(4):
                 	host = self.addHost( 'h{}'.format( count ) )
                 	self.addLink( sw1, host )
                 	count += 1
